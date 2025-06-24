@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -15,7 +16,7 @@ app.get('/api/issues', async (req, res) => {
   res.json(issues);
 });
 
-app.listen(5000, () => console.log('Server running on http://localhost:3000'));
+app.listen(5000, () => console.log('Server running on http://localhost:5000'));
 
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);

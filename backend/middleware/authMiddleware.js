@@ -1,3 +1,6 @@
+// Aqui se colocan las funciones que se ejecutan antes de llegar al controlador
+// como autenticación, validación de datos, logging, etc.
+
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecret';
 

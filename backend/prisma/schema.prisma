@@ -8,23 +8,38 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  password String
-  issues   Issue[]
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  issues    Issue[]
+  projects  Project[] // Relación inversa con Project
 }
 
-model Project{
-  id      Int     @id @default(autoincrement)
-  
-
+model Project {
+  id        Int       @id @default(autoincrement())
+  name      String
+  issues    Issue[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
 }
 
 model Issue {
-  id          Int    @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   description String
   status      String
+  startDate   DateTime? // Fecha opcional de inicio
+  endDate     DateTime? // Fecha opcional de finalización
+
   userId      Int
-  user        User   @relation(fields: [userId], references: [id])
+  projectId   Int
+  parentId    Int? // Para subtareas
+
+  user        User     @relation(fields: [userId], references: [id])
+  project     Project  @relation(fields: [projectId], references: [id])
+
+  parent      Issue?    @relation("IssueToSubtasks", fields: [parentId], references: [id])
+  children    Issue[]   @relation("IssueToSubtasks")
 }

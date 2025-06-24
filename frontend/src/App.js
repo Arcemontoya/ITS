@@ -1,10 +1,8 @@
 // src/App.js
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Login from './login';
-import Register from './register';
-
-
+import Login from './System_Access/login';
+import Register from './System_Access/register';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
