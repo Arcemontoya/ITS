@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/issues', async (req, res) => {
+app.get('/api/projects', async (req, res) => {
   const issues = await prisma.issue.findMany({ include: { user: true } });
   res.json(issues);
 });
@@ -20,3 +20,4 @@ app.listen(5000, () => console.log('Server running on http://localhost:5000'));
 
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
+app.use('/api/projects', require('./routes/projectRoutes'));
