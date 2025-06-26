@@ -1,4 +1,4 @@
-# Task Manager
+# Issue Tracker System
 
 Web project made as an alternative of Azure/Jira.
 
